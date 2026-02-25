@@ -1,16 +1,49 @@
+@font-face {
+  font-family: 'Bungee';
+  src: url('./assets/fonts/Bungee-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Chewy';
+  src: url('./assets/fonts/Chewy-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fredoka';
+  src: url('./assets/fonts/Fredoka-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color: rgba(0, 0, 0, 0.022);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Couleurs de la charte graphique */
+  --color-orange: #f4a33c;
+  --color-cyan: #41c6e8;
+  --color-blue: #0069ff;
+  --color-pink: #ff7fbb;
+  --color-purple: #6c43ad;
+  --color-yellow: #FEFA67;
+  --color-red: #ED3B21;
+  --color-gray: #DDDCDF;
+
+  /* Polices de la charte graphique */
+  --font-bungee: 'Bungee', sans-serif;
+  --font-chewy: 'Chewy', cursive;
+  --font-fredoka: 'Fredoka', sans-serif;
 }
 
 a {
@@ -24,9 +57,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
 
@@ -59,10 +89,9 @@ button:focus-visible {
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 @media (prefers-color-scheme: light) {
