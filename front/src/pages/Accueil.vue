@@ -88,7 +88,7 @@ import capyWizard from '../assets/capymg/capy-wizard.png'
 
 const floatingCapys = [
 	{
-		name: 'Capy Gamer',
+		name: 'Pixel Bara',
 		image: capyGamer,
 		size: 158,
 		duration: 3.8,
@@ -97,7 +97,7 @@ const floatingCapys = [
 		message: 'Je campe le spawn 😎'
 	},
 	{
-		name: 'Capy Love',
+		name: 'Love Bara',
 		image: capyLove,
 		size: 172,
 		duration: 4.6,
@@ -106,7 +106,7 @@ const floatingCapys = [
 		message: 'GG, t’es trop fort 💖'
 	},
 	{
-		name: 'Capy Sport',
+		name: 'Turbo Bara',
 		image: capySport,
 		size: 166,
 		duration: 3.4,
@@ -115,7 +115,7 @@ const floatingCapys = [
 		message: 'Speedrun ou rien ! 🏁'
 	},
 	{
-		name: 'Capy Wizard',
+		name: 'Luna Bara',
 		image: capyWizard,
 		size: 160,
 		duration: 4.9,
@@ -124,7 +124,7 @@ const floatingCapys = [
 		message: 'Abracapybara ✨'
 	},
 	{
-		name: 'Capy Tea',
+		name: 'Capy Zen',
 		image: capyTea,
 		size: 176,
 		duration: 4.1,
