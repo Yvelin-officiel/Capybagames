@@ -63,6 +63,7 @@
 					:tag="game.tag"
 					:gradient="game.gradient"
 					:btn-variant="game.btnVariant"
+					:to="game.to"
 				/>
 			</div>
 		</section>
@@ -135,12 +136,22 @@ const floatingCapys = [
 
 const gameModes = [
 	{
+		title: 'Jetpack Capy',
+		tag: 'Action',
+		description: 'Enfile ton jetpack et vole aussi haut que possible ! Évite les obstacles et collecte les pièces.',
+		img: '🚀',
+		gradient: 'linear-gradient(135deg, var(--color-cyan), var(--color-blue))',
+		btnVariant: 'primary',
+		to: '../games/jetpackcapy'
+	},
+	{
 		title: 'Arcade Rush',
 		tag: 'Action',
 		description: 'Enchaîne les obstacles et vise le meilleur score avec Capy Sport.',
 		img: '🏁',
 		gradient: 'linear-gradient(135deg, var(--color-red), var(--color-orange))',
-		btnVariant: 'danger'
+		btnVariant: 'danger',
+		to: '#'
 	},
 	{
 		title: 'Potion Puzzle',
@@ -148,7 +159,8 @@ const gameModes = [
 		description: 'Compose les bonnes combinaisons magiques avec Capy Wizard.',
 		img: '✨',
 		gradient: 'linear-gradient(135deg, var(--color-purple), var(--color-blue))',
-		btnVariant: 'primary'
+		btnVariant: 'primary',
+		to: '#'
 	},
 	{
 		title: 'Cozy Garden',
@@ -156,13 +168,14 @@ const gameModes = [
 		description: 'Crée ton petit coin paisible et collectionne les bonus zen.',
 		img: '🌿',
 		gradient: 'linear-gradient(135deg, var(--color-cyan), var(--color-yellow))',
-		btnVariant: 'secondary'
+		btnVariant: 'secondary',
+		to: '#'
 	}
 ]
 
 const stats = [
 	{ value: '5', label: 'Mascottes uniques' },
-	{ value: '3', label: 'Jeux disponibles' },
+	{ value: '4', label: 'Jeux disponibles' },
 	{ value: '100%', label: 'Good vibes' }
 ]
 

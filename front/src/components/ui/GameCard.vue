@@ -1,18 +1,21 @@
 <template>
-  <div class="game-card">
-    <div class="game-card-banner" :style="{ background: gradient }">
-      <span class="game-card-tag">{{ tag }}</span>
-      <div class="game-card-img">{{ img }}</div>
+  <RouterLink :to="to" class="game-card-link">
+    <div class="game-card">
+      <div class="game-card-banner" :style="{ background: gradient }">
+        <span class="game-card-tag">{{ tag }}</span>
+        <div class="game-card-img">{{ img }}</div>
+      </div>
+      <div class="game-card-body">
+        <h3 class="game-card-title">{{ title }}</h3>
+        <p class="game-card-desc">{{ description }}</p>
+        <AppButton :variant="btnVariant" :full="true">Jouer !</AppButton>
+      </div>
     </div>
-    <div class="game-card-body">
-      <h3 class="game-card-title">{{ title }}</h3>
-      <p class="game-card-desc">{{ description }}</p>
-      <AppButton :variant="btnVariant" :full="true">Jouer !</AppButton>
-    </div>
-  </div>
+  </RouterLink>
 </template>
 
 <script setup>
+import { RouterLink } from 'vue-router'
 import AppButton from './AppButton.vue'
 
 defineProps({
@@ -21,11 +24,18 @@ defineProps({
   img: { type: String, default: '' },
   tag: { type: String, default: '' },
   gradient: { type: String, default: 'linear-gradient(135deg, var(--color-purple), var(--color-blue))' },
-  btnVariant: { type: String, default: 'primary' }
+  btnVariant: { type: String, default: 'primary' },
+  to: { type: String, default: '#' }
 })
 </script>
 
 <style scoped>
+.game-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .game-card {
   background: white;
   border-radius: 20px;
