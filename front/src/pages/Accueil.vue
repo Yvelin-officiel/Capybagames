@@ -54,20 +54,16 @@
 			</div>
 
 			<div class="games-grid">
-				<article
+				<GameCard
 					v-for="game in gameModes"
 					:key="game.title"
-					class="game-tile"
-					:style="{ '--tile-gradient': game.gradient }"
-				>
-					<img :src="game.image" :alt="game.title" class="tile-image" />
-					<div class="tile-body">
-						<span class="tile-tag">{{ game.tag }}</span>
-						<h3>{{ game.title }}</h3>
-						<p>{{ game.description }}</p>
-						<button class="tile-button">Jouer</button>
-					</div>
-				</article>
+					:title="game.title"
+					:description="game.description"
+					:img="game.img"
+					:tag="game.tag"
+					:gradient="game.gradient"
+					:btn-variant="game.btnVariant"
+				/>
 			</div>
 		</section>
 
@@ -81,8 +77,7 @@
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router'
-import AppButton from '../components/ui/AppButton.vue'
+import GameCard from '../components/ui/GameCard.vue'
 
 import capyGamer from '../assets/capymg/capy-gamer.png'
 import capyLove from '../assets/capymg/capy-love.png'
@@ -143,22 +138,25 @@ const gameModes = [
 		title: 'Arcade Rush',
 		tag: 'Action',
 		description: 'Enchaîne les obstacles et vise le meilleur score avec Capy Sport.',
-		image: capySport,
-		gradient: 'linear-gradient(135deg, var(--color-red), var(--color-orange))'
+		img: '🏁',
+		gradient: 'linear-gradient(135deg, var(--color-red), var(--color-orange))',
+		btnVariant: 'danger'
 	},
 	{
 		title: 'Potion Puzzle',
 		tag: 'Réflexion',
 		description: 'Compose les bonnes combinaisons magiques avec Capy Wizard.',
-		image: capyWizard,
-		gradient: 'linear-gradient(135deg, var(--color-purple), var(--color-blue))'
+		img: '✨',
+		gradient: 'linear-gradient(135deg, var(--color-purple), var(--color-blue))',
+		btnVariant: 'primary'
 	},
 	{
 		title: 'Cozy Garden',
 		tag: 'Chill',
 		description: 'Crée ton petit coin paisible et collectionne les bonus zen.',
-		image: capyTea,
-		gradient: 'linear-gradient(135deg, var(--color-cyan), var(--color-yellow))'
+		img: '🌿',
+		gradient: 'linear-gradient(135deg, var(--color-cyan), var(--color-yellow))',
+		btnVariant: 'secondary'
 	}
 ]
 
@@ -385,69 +383,6 @@ h1 {
 	display: grid;
 	gap: 1rem;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.game-tile {
-	background: #fff;
-	border-radius: 20px;
-	overflow: hidden;
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-	transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.game-tile:hover {
-	transform: translateY(-8px) rotate(-0.5deg);
-	box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
-}
-
-.tile-image {
-	width: 100%;
-	aspect-ratio: 4 / 3;
-	object-fit: contain;
-	background: var(--tile-gradient);
-	padding: 1rem;
-	box-sizing: border-box;
-}
-
-.tile-body {
-	padding: 1rem;
-}
-
-.tile-tag {
-	display: inline-block;
-	font-family: var(--font-fredoka);
-	font-weight: 700;
-	font-size: 0.82rem;
-	color: #fff;
-	background: var(--color-blue);
-	border-radius: 999px;
-	padding: 0.25rem 0.7rem;
-}
-
-.tile-body h3 {
-	margin: 0.7rem 0 0.45rem;
-	font-family: var(--font-bungee);
-	font-size: 1.2rem;
-	line-height: 1.2;
-	color: #202020;
-}
-
-.tile-body p {
-	margin: 0;
-	min-height: 52px;
-	font-family: var(--font-fredoka);
-	color: #5f5f5f;
-}
-
-.tile-button {
-	margin-top: 0.9rem;
-	border: none;
-	border-radius: 999px;
-	background: var(--color-purple);
-	color: #fff;
-	padding: 0.5rem 1rem;
-	font-family: var(--font-chewy);
-	font-size: 1rem;
 }
 
 .ambiance-section {
