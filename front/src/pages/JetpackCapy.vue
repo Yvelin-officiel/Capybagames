@@ -7,7 +7,7 @@
 		
 		<div class="game-container">
 			<iframe 
-				src="\src\games\jetpackcapy\index.html"
+				src="/src/games/jetpackcapy/index.html"
 				title="Jetpack Capy Game"
 				class="game-iframe"
 				allow="autoplay"
@@ -52,7 +52,7 @@ import { RouterLink } from 'vue-router'
 <style scoped>
 .game-page {
 	min-height: 100vh;
-	background: linear-gradient(135deg, #87CEEB 0%, #E0F6FF 100%);
+	/* background: linear-gradient(135deg, #87CEEB 0%, #E0F6FF 100%); */
 	padding: 1rem;
 }
 
@@ -179,8 +179,8 @@ import { RouterLink } from 'vue-router'
 	}
 
 	.game-container {
-		aspect-ratio: auto;
-		height: 600px;
+		width: 100%;
+		aspect-ratio: 4 / 3;
 	}
 
 	.info-content {

@@ -10,6 +10,7 @@ export class Game extends Phaser.Scene {
     create() {
         this.initVariables();
         this.initUI();
+        this.initAnimations();
         this.initPlayer();
         this.initInput();
         this.createObstacles();
@@ -64,6 +65,20 @@ export class Game extends Phaser.Scene {
 
     initPlayer() {
         this.capy = new Capy(this, 100, 300);
+    }
+
+    initAnimations() {
+        if (!this.anims.exists(ANIMATION.coin.spin)) {
+            this.anims.create({
+                key: ANIMATION.coin.spin,
+                frames: this.anims.generateFrameNumbers(ASSETS.graphics.coin, {
+                    start: 0,
+                    end: 24
+                }),
+                frameRate: 24,
+                repeat: -1
+            });
+        }
     }
 
     initInput() {
@@ -126,6 +141,8 @@ export class Game extends Phaser.Scene {
     spawnCoin() {
         const randomY = Phaser.Math.Between(50, 500);
         const coin = this.coins.create(900, randomY, 'coin');
+        coin.setScale(0.55);
+        coin.play(ANIMATION.coin.spin);
         coin.setVelocityX(-this.gameSpeed * 100);
     }
 
