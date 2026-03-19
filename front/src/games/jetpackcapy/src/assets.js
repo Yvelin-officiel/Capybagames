@@ -1,10 +1,13 @@
 const ASSETS = {
     graphics: {
-        // Placeholders - à remplacer par des sprites réels
         capy: 'capy',
         obstacle: 'obstacle',
         coin: 'coin',
         background: 'background'
+    },
+    paths: {
+        capyJetpack: 'assets/capyjetpack.png',
+        coinSheet: 'assets/coin-64x64.png'
     }
 };
 
