@@ -154,13 +154,13 @@ const gameModes = [
 		to: '../games/jetpackcapy'
 	},
 	{
-		title: 'Arcade Rush',
-		tag: 'Action',
-		description: 'Enchaîne les obstacles et vise le meilleur score avec Capy Sport.',
-		img: '🏁',
-		gradient: 'linear-gradient(135deg, var(--color-red), var(--color-orange))',
-		btnVariant: 'danger',
-		to: '#'
+		title: 'CapySnake',
+		tag: 'Classique',
+		description: 'Dirige ton capybara-serpent et mange autant de nourriture que possible sans te mordre la queue !',
+		img: '🐍',
+		gradient: 'linear-gradient(135deg, var(--color-cyan), #4caf50)',
+		btnVariant: 'primary',
+		to: '../games/capysnake'
 	},
 	{
 		title: 'Potion Puzzle',

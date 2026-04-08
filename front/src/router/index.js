@@ -3,6 +3,7 @@ import Charte from "../pages/Charte.vue";
 import Accueil from "../pages/Accueil.vue";
 import JetpackCapy from "../pages/JetpackCapy.vue";
 import FiveNightAtCapys from "../pages/FiveNightAtCapys.vue";
+import CapySnake from "../pages/CapySnake.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: "/games/fivenightatcapys",
     name: "FiveNightAtCapys",
     component: FiveNightAtCapys,
+  },
+  {
+    path: "/games/capysnake",
+    name: "CapySnake",
+    component: CapySnake,
   },
 ];
 
