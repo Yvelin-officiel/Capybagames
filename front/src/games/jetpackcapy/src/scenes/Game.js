@@ -1,6 +1,7 @@
 import ASSETS from '../assets.js';
 import ANIMATION from '../animation.js';
 import { Capy } from '../gameObjects/Capy.js';
+import { Orange } from '../gameObjects/Orange.js';
 
 export class Game extends Phaser.Scene {
     constructor() {
@@ -9,22 +10,98 @@ export class Game extends Phaser.Scene {
 
     create() {
         this.initVariables();
+        this.initBackground();
+        this.createAllSpawners();
         this.initUI();
         this.initAnimations();
         this.initPlayer();
         this.initInput();
-        this.createObstacles();
-        this.createCoins();
     }
 
     initVariables() {
         this.score = 0;
         this.distance = 0;
-        this.gameSpeed = 5;
+        this.gameSpeed = 4;
         this.maxGameSpeed = 10;
+        // Reglages du fond: augmente/reduis ces valeurs pour ajuster la vitesse.
+        this.backgroundBaseScrollSpeed = 0.5;
+        this.backgroundSpeedFactor = 0.8;
         this.obstacles = this.physics.add.group();
         this.coins = this.physics.add.group();
+        this.oranges = this.physics.add.group();
         this.scrollX = 0;
+        this.obstaclePositions = [];
+    }
+
+    createAllSpawners() {
+        this.spawnObstacle();
+        this.scheduleNextObstacle();
+        this.spawnCoin();
+        this.scheduleNextCoin();
+        this.spawnOrange();
+        this.scheduleNextOrange();
+    }
+
+    scheduleNextObstacle() {
+        const randomDelay = Phaser.Math.Between(3000, 5000);
+        this.time.addEvent({
+            delay: randomDelay,
+            callback: this.spawnObstacle,
+            callbackScope: this,
+            once: true
+        });
+    }
+
+    scheduleNextCoin() {
+        const randomDelay = Phaser.Math.Between(1500, 3500);
+        this.time.addEvent({
+            delay: randomDelay,
+            callback: this.spawnCoin,
+            callbackScope: this,
+            once: true
+        });
+    }
+
+    scheduleNextOrange() {
+        const randomDelay = Phaser.Math.Between(3000, 4000);
+        this.time.addEvent({
+            delay: randomDelay,
+            callback: this.spawnOrange,
+            callbackScope: this,
+            once: true
+        });
+    }
+
+    isPositionClear(y, minDistance = 120) {
+        for (const obsY of this.obstaclePositions) {
+            if (Math.abs(y - obsY) < minDistance) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    initBackground() {
+        this.randomBgKey = Phaser.Utils.Array.GetRandom(ASSETS.graphics.backgrounds);
+        this.background = this.add
+            .tileSprite(0, 0, this.scale.width, this.scale.height, this.randomBgKey)
+            .setOrigin(0, 0)
+            .setDepth(-100);
+
+        this.resizeBackground();
+        this.scale.on('resize', this.resizeBackground, this);
+    }
+
+    resizeBackground() {
+        if (!this.background) {
+            return;
+        }
+
+        this.background.setSize(this.scale.width, this.scale.height);
+
+        const sourceImage = this.textures.get(this.randomBgKey).getSourceImage();
+        const coverScale = this.scale.height / sourceImage.height;
+        this.background.setTileScale(coverScale, coverScale);
     }
 
     initUI() {
@@ -38,17 +115,17 @@ export class Game extends Phaser.Scene {
         // Distance display
         this.distanceText = this.add.text(20, 50, `Distance: 0m`, {
             fontSize: '20px',
-            fill: '#87CEEB'
+            fill: '#ffffff'
         });
 
         // Altitude display
         this.altitudeText = this.add.text(20, 80, `Altitude: 300m`, {
             fontSize: '20px',
-            fill: '#87CEEB'
+            fill: '#ffffff'
         });
 
         // Fuel bar background
-        this.fuelBarBg = this.add.rectangle(675, 30, 110, 20, 0x333333);
+        this.fuelBarBg = this.add.rectangle(675, 30, 120, 20, 0x333333);
         this.fuelBarBg.setOrigin(0.5, 0.5);
         
         // Fuel bar
@@ -119,36 +196,68 @@ export class Game extends Phaser.Scene {
     }
 
     spawnObstacle() {
-        const randomY = Phaser.Math.Between(50, 500);
+        let randomY;
+        let attempts = 0;
+        do {
+            randomY = Phaser.Math.Between(80, 480);
+            attempts += 1;
+        } while (!this.isPositionClear(randomY, 100) && attempts < 5);
+
         const obstacle = this.obstacles.create(900, randomY, 'obstacle');
+        obstacle.setDisplaySize(100, 148);
+        obstacle.body.setSize(100, 148, true);
         obstacle.setVelocityX(-this.gameSpeed * 100);
         
-        // Détruire si hors écran
+        obstacle.originalY = randomY;
+        obstacle.oscillationSpeed = 0.05 + Math.random() * 0.04;
+        obstacle.oscillationAmount = 30 + Math.random() * 20;
+        obstacle.phase = Math.random() * Math.PI * 2;
+        
+        this.obstaclePositions.push(randomY);
+        if (this.obstaclePositions.length > 5) {
+            this.obstaclePositions.shift();
+        }
+        
         if (obstacle.x < -100) {
             obstacle.destroy();
         }
-    }
 
-    createCoins() {
-        this.time.addEvent({
-            delay: 2500,
-            callback: this.spawnCoin,
-            callbackScope: this,
-            loop: true
-        });
+        this.scheduleNextObstacle();
     }
 
     spawnCoin() {
         const randomY = Phaser.Math.Between(50, 500);
+        if (!this.isPositionClear(randomY, 80)) {
+            this.scheduleNextCoin();
+            return;
+        }
+
         const coin = this.coins.create(900, randomY, 'coin');
         coin.setScale(0.55);
         coin.play(ANIMATION.coin.spin);
         coin.setVelocityX(-this.gameSpeed * 100);
+
+        this.scheduleNextCoin();
+    }
+
+    spawnOrange() {
+        const randomY = Phaser.Math.Between(80, 480);
+        if (!this.isPositionClear(randomY, 80)) {
+            this.scheduleNextOrange();
+            return;
+        }
+
+        const orange = new Orange(this, 900, randomY);
+        this.oranges.add(orange);
+        orange.setVelocityX(-this.gameSpeed * 100);
+
+        this.scheduleNextOrange();
     }
 
     update() {
         this.distance += this.gameSpeed * 0.1;
         this.scrollX += this.gameSpeed;
+        this.background.tilePositionX += this.backgroundBaseScrollSpeed + (this.gameSpeed * this.backgroundSpeedFactor);
 
         // Augmenter la vitesse graduellement
         if (this.gameSpeed < this.maxGameSpeed) {
@@ -158,6 +267,11 @@ export class Game extends Phaser.Scene {
         // Update obstacles velocity
         this.obstacles.children.entries.forEach(obstacle => {
             obstacle.setVelocityX(-this.gameSpeed * 100);
+
+            obstacle.phase += obstacle.oscillationSpeed;
+            const newY = obstacle.originalY + Math.sin(obstacle.phase) * obstacle.oscillationAmount;
+            obstacle.y = newY;
+
             if (obstacle.x < -100) {
                 obstacle.destroy();
             }
@@ -171,6 +285,14 @@ export class Game extends Phaser.Scene {
             }
         });
 
+        // Update oranges velocity
+        this.oranges.children.entries.forEach(orange => {
+            orange.setVelocityX(-this.gameSpeed * 100);
+            if (orange.x < -100) {
+                orange.destroy();
+            }
+        });
+
         // Collision avec obstacles
         this.physics.overlap(this.capy, this.obstacles, () => {
             this.endGame();
@@ -180,6 +302,11 @@ export class Game extends Phaser.Scene {
         this.physics.overlap(this.capy, this.coins, (capy, coin) => {
             this.score += 10;
             coin.destroy();
+        });
+
+        // Collision avec oranges
+        this.physics.overlap(this.capy, this.oranges, (capy, orange) => {
+            orange.collect(this);
         });
 
         // Vérifier si le capy est hors limites
@@ -202,6 +329,7 @@ export class Game extends Phaser.Scene {
     }
 
     endGame() {
+        this.scale.off('resize', this.resizeBackground, this);
         this.physics.pause();
         this.scene.start('GameOver', {
             score: this.score,
