@@ -115,7 +115,7 @@ const floatingCapys = [
 		message: 'Speedrun ou rien ! 🏁'
 	},
 	{
-		name: 'Luna Bara',
+		name: 'Bara Luna',
 		image: capyWizard,
 		size: 160,
 		duration: 4.9,
@@ -135,6 +135,15 @@ const floatingCapys = [
 ]
 
 const gameModes = [
+	{
+		title: 'Five Night at Capys',
+		tag: 'Horreur',
+		description: 'Survis de 12 AM à 6 AM : surveille les caméras, ferme les portes et économise l\'énergie.',
+		img: '🌙',
+		gradient: 'linear-gradient(135deg, var(--color-purple), var(--color-blue))',
+		btnVariant: 'danger',
+		to: '../games/fivenightatcapys'
+	},
 	{
 		title: 'Jetpack Capy',
 		tag: 'Action',
@@ -175,7 +184,7 @@ const gameModes = [
 
 const stats = [
 	{ value: '5', label: 'Mascottes uniques' },
-	{ value: '4', label: 'Jeux disponibles' },
+	{ value: '5', label: 'Jeux disponibles' },
 	{ value: '100%', label: 'Good vibes' }
 ]
 
