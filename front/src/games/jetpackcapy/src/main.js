@@ -1,5 +1,6 @@
 import { Boot } from './scenes/Boot.js';
 import { Preloader } from './scenes/Preloader.js';
+import { Start } from './scenes/Start.js';
 import { Game } from './scenes/Game.js';
 import { GameOver } from './scenes/GameOver.js';
 
@@ -23,6 +24,7 @@ const config = {
     scene: [
         Boot,
         Preloader,
+        Start,
         Game,
         GameOver
     ]
