@@ -7,7 +7,7 @@
 
 		<div class="game-container">
 			<iframe
-				src="/src/games/capysnake/index.html"
+				src="./games/capysnake/index.html"
 				title="CapySnake Game"
 				class="game-iframe"
 				allow="autoplay"

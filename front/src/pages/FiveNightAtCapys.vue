@@ -7,7 +7,7 @@
 
 		<div class="game-container">
 			<iframe
-				src="/src/games/fivenightatcapys/index.html"
+				src="./games/fivenightatcapys/index.html"
 				title="Five Night at Capys Game"
 				class="game-iframe"
 				allow="autoplay"
