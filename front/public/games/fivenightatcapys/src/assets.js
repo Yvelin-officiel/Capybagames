@@ -12,9 +12,9 @@ const ASSETS = {
     camr: "camr",
   },
   paths: {
-    capyGamer: "../../assets/capymg/capy-gamer.png",
-    capyLove: "../../assets/capymg/capy-love.png",
-    capyWizard: "../../assets/capymg/capy-wizard.png",
+    capyGamer: "../../src/assets/capymg/capy-gamer.png",
+    capyLove: "../../src/assets/capymg/capy-love.png",
+    capyWizard: "../../src/assets/capymg/capy-wizard.png",
     cam1: "gamesAssets/imgs/cam1.png",
     cam2: "gamesAssets/imgs/cam2.png",
     cam3: "gamesAssets/imgs/cam3.png",

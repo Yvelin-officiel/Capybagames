@@ -1,7 +1,7 @@
-import { Boot } from "./scenes/Boot";
-import { Preloader } from "./scenes/Preloader";
-import { Game } from "./scenes/Game";
-import { GameOver } from "./scenes/GameOver";
+import { Boot } from "./scenes/Boot.js";
+import { Preloader } from "./scenes/Preloader.js";
+import { Game } from "./scenes/Game.js";
+import { GameOver } from "./scenes/GameOver.js";
 
 const config = {
   type: Phaser.AUTO,

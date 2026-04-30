@@ -218,8 +218,9 @@ const ambiencePoints = [
 
 .hero-logo {
 	display: block;
-	height: 400px;
+	max-height: 400px;
 	margin: 0 auto 1.2rem;
+	max-width: 80%;
 }
 .mascots-section {
 	max-width: 1180px;
