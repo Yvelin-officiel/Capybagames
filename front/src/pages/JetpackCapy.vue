@@ -7,7 +7,7 @@
 		
 		<div class="game-container">
 			<iframe 
-				src="/src/games/jetpackcapy/index.html"
+				src="./games/jetpackcapy/index.html"
 				title="Jetpack Capy Game"
 				class="game-iframe"
 				allow="autoplay"

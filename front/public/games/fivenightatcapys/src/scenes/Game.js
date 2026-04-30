@@ -19,11 +19,11 @@ const MINIMAP_LAYOUT = {
 };
 
 const CAMERA_MAP = {
-  CAM1: "stage",
-  CAM2: "dining",
-  CAM3: "hall",
-  CAML: "leftDoor",
-  CAMR: "rightDoor",
+  CAM1: "outside1",
+  CAM2: "outside2",
+  CAM3: "spa",
+  CAML: "mudroom",
+  CAMR: "cage",
 };
 
 const CAMERA_LAYOUT = {
@@ -66,7 +66,7 @@ export class Game extends Phaser.Scene {
         id: "pixel",
         name: "Pixel Bara",
         key: ASSETS.monsters.capyGamer,
-        route: ["stage", "dining", "leftDoor"],
+        route: ["outside1", "outside2", "mudroom"],
         positionIndex: 0,
         aggression: 0.16,
         breachTimer: 0,
@@ -85,7 +85,7 @@ export class Game extends Phaser.Scene {
         id: "luna",
         name: "Bara Luna",
         key: ASSETS.monsters.capyWizard,
-        route: ["stage", "hall", "rightDoor"],
+        route: ["outside1", "spa", "cage"],
         positionIndex: 0,
         aggression: 0.17,
         breachTimer: 0,
@@ -104,7 +104,7 @@ export class Game extends Phaser.Scene {
         id: "love",
         name: "Love Bara",
         key: ASSETS.monsters.capyLove,
-        route: ["stage", "dining", "hall", "rightDoor"],
+        route: ["outside1", "outside2", "spa", "cage"],
         positionIndex: 0,
         aggression: 0.14,
         breachTimer: 0,
@@ -185,7 +185,7 @@ export class Game extends Phaser.Scene {
     });
 
     this.cameraTitle = this.add
-      .text(32, 26, "CAM 1", {
+      .text(32, 26, "CAM1", {
         fontSize: "24px",
         color: "#ffffff",
         fontStyle: "bold",
@@ -483,7 +483,7 @@ export class Game extends Phaser.Scene {
       image.setVisible(camId === this.selectedCamera);
     });
 
-    const layout = CAMERA_LAYOUT[this.selectedCamera] || CAMERA_LAYOUT.CAM1A;
+    const layout = CAMERA_LAYOUT[this.selectedCamera] || CAMERA_LAYOUT.CAM1;
 
     this.cameraMonsterSprites.forEach((sprite, index) => {
       const monster = this.monsters[index];
@@ -592,7 +592,7 @@ export class Game extends Phaser.Scene {
     );
 
     const currentPosition = monster.route[monster.positionIndex];
-    if (currentPosition === "leftDoor" || currentPosition === "rightDoor") {
+    if (currentPosition === "mudroom" || currentPosition === "cage") {
       const retreatChance = this.power <= 0 ? 0 : 0.55;
       if (directionRoll < retreatChance && monster.positionIndex > 0) {
         this.startMonsterTravel(monster, monster.positionIndex - 1);
@@ -607,7 +607,7 @@ export class Game extends Phaser.Scene {
     ) {
       const targetName = monster.route[monster.positionIndex + 1];
       if (
-        (targetName === "leftDoor" || targetName === "rightDoor") &&
+        (targetName === "mudroom" || targetName === "cage") &&
         this.isDoorOccupied(targetName, monster)
       ) {
         if (Math.random() < 0.8) {
@@ -712,17 +712,17 @@ export class Game extends Phaser.Scene {
       const current = monster.route[monster.positionIndex];
       const movingIn =
         monster.isMoving &&
-        monster.route[monster.travelTo] === "leftDoor" &&
+        monster.route[monster.travelTo] === "mudroom" &&
         monster.travelProgress > 0.55;
-      return current === "leftDoor" || movingIn;
+      return current === "mudroom" || movingIn;
     });
     const rightThreat = this.monsters.some((monster) => {
       const current = monster.route[monster.positionIndex];
       const movingIn =
         monster.isMoving &&
-        monster.route[monster.travelTo] === "rightDoor" &&
+        monster.route[monster.travelTo] === "cage" &&
         monster.travelProgress > 0.55;
-      return current === "rightDoor" || movingIn;
+      return current === "cage" || movingIn;
     });
 
     this.leftPeek.setVisible(leftThreat && !this.cameraOpen);
@@ -730,13 +730,13 @@ export class Game extends Phaser.Scene {
 
     this.monsters.forEach((monster) => {
       const currentPosition = monster.route[monster.positionIndex];
-      if (currentPosition !== "leftDoor" && currentPosition !== "rightDoor") {
+      if (currentPosition !== "mudroom" && currentPosition !== "cage") {
         monster.breachTimer = 0;
         return;
       }
 
       const blocked =
-        currentPosition === "leftDoor" ? this.doors.left : this.doors.right;
+        currentPosition === "mudroom" ? this.doors.left : this.doors.right;
       if (blocked) {
         monster.breachTimer = 0;
         return;

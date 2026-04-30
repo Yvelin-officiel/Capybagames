@@ -6,8 +6,8 @@ export class Capy extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this);
 
         // Ajuste la taille du PNG capyjetpack pour garder un gameplay lisible.
-        this.setDisplaySize(112, 68);
-        this.body.setSize(this.displayWidth * 0.62, this.displayHeight * 0.5, true);
+        this.setDisplaySize(224, 136);
+        this.body.setSize(this.displayWidth * 1, this.displayHeight * 0.9, true);
 
         this.setCollideWorldBounds(true);
         this.setBounce(0);

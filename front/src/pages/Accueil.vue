@@ -2,6 +2,8 @@
 	<main class="home-page">
 		<section class="hero">
 			<div class="hero-content">
+
+				<img :src="logo" alt="Logo de CapybaGames" class="hero-logo" />
 				<p class="hero-kicker">Bienvenue sur CapybaGames</p>
 				<h1>Des mini-jeux fun avec les capybaras les plus cools</h1>
 				<p class="hero-subtitle">
@@ -85,6 +87,7 @@ import capyLove from '../assets/capymg/capy-love.png'
 import capySport from '../assets/capymg/capy-sport.png'
 import capyTea from '../assets/capymg/capy-tea.png'
 import capyWizard from '../assets/capymg/capy-wizard.png'
+import logo from '../assets/logo.png'
 
 const floatingCapys = [
 	{
@@ -213,6 +216,12 @@ const ambiencePoints = [
 	display: block;
 }
 
+.hero-logo {
+	display: block;
+	max-height: 400px;
+	margin: 0 auto 1.2rem;
+	max-width: 80%;
+}
 .mascots-section {
 	max-width: 1180px;
 	margin: 2.2rem auto 0;
