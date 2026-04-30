@@ -27,6 +27,12 @@
 					<ul>
 						<li><strong>Flèches directionnelles :</strong> Déplacer le snake</li>
 						<li><strong>ZQSD / WASD :</strong> Alternative clavier</li>
+						<li><strong>Shift</strong> Pour accélérer la vitesse de déplacement</li>
+						<ol> types tirés aléatoirement :
+							<li>🔵 Bleu = +2 capybaras (+20 pts)</li>
+							<li>🟠 Orange = +4 capybaras (+40 pts)</li>
+							<li>🟡 Doré = +6 capybaras (+60 pts)</li>
+						</ol>
 					</ul>
 				</div>
 
