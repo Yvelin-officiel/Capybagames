@@ -4,25 +4,21 @@
 			<RouterLink to="/" class="back-button">← Retour</RouterLink>
 			<h1>🚀 Jetpack Capy</h1>
 		</header>
-		
+
 		<div class="game-container">
-			<iframe 
-				src="./games/jetpackcapy/index.html"
-				title="Jetpack Capy Game"
-				class="game-iframe"
-				allow="autoplay"
-			></iframe>
+			<iframe src="./games/jetpackcapy/index.html" title="Jetpack Capy Game" class="game-iframe"
+				allow="autoplay"></iframe>
 		</div>
 
 		<section class="game-info">
 			<div class="info-content">
 				<h2>À propos de Jetpack Capy</h2>
 				<p>
-					Enfile ton jetpack et vole aussi haut que possible ! Évite les obstacles, 
-					collecte les pièces et manage ton carburant avec sagesse. À combien de mètres 
+					Enfile ton jetpack et vole aussi haut que possible ! Évite les obstacles,
+					collecte les pièces et manage ton carburant avec sagesse. À combien de mètres
 					tu peux arriver ?
 				</p>
-				
+
 				<div class="controls">
 					<h3>Contrôles</h3>
 					<ul>
@@ -92,13 +88,10 @@ import { RouterLink } from 'vue-router'
 }
 
 .game-container {
-	max-width: 1000px;
-	margin: 0 auto 2rem;
-	background: white;
-	border-radius: 20px;
+	max-height: 800px;
+	width: 100%;
+	height: 100dvh;
 	overflow: hidden;
-	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-	aspect-ratio: 4 / 3;
 }
 
 .game-iframe {
