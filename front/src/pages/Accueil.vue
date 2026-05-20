@@ -162,32 +162,14 @@ const gameModes = [
 		description: 'Dirige ton capybara-serpent et mange autant de nourriture que possible sans te mordre la queue !',
 		img: '🐍',
 		gradient: 'linear-gradient(135deg, var(--color-cyan), #4caf50)',
-		btnVariant: 'primary',
+		btnVariant: 'fun',
 		to: '../games/capysnake'
-	},
-	{
-		title: 'Potion Puzzle',
-		tag: 'Réflexion',
-		description: 'Compose les bonnes combinaisons magiques avec Capy Wizard.',
-		img: '✨',
-		gradient: 'linear-gradient(135deg, var(--color-purple), var(--color-blue))',
-		btnVariant: 'primary',
-		to: '#'
-	},
-	{
-		title: 'Cozy Garden',
-		tag: 'Chill',
-		description: 'Crée ton petit coin paisible et collectionne les bonus zen.',
-		img: '🌿',
-		gradient: 'linear-gradient(135deg, var(--color-cyan), var(--color-yellow))',
-		btnVariant: 'secondary',
-		to: '#'
 	}
 ]
 
 const stats = [
 	{ value: '5', label: 'Mascottes uniques' },
-	{ value: '5', label: 'Jeux disponibles' },
+	{ value: '3', label: 'Jeux disponibles' },
 	{ value: '100%', label: 'Good vibes' }
 ]
 
