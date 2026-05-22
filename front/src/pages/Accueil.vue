@@ -27,20 +27,13 @@
 			</div>
 
 			<div class="mascots-grid">
-				<article
-					v-for="capy in floatingCapys"
-					:key="capy.name"
-					class="mascot-card"
-				>
-					<div
-						class="floating-capy mascot-figure"
-						:style="{
-							'--capy-size': `${capy.size}px`,
-							'--float-duration': `${capy.duration}s`,
-							'--float-delay': `${capy.delay}s`,
-							'--tilt': `${capy.tilt}deg`
-						}"
-					>
+				<article v-for="capy in floatingCapys" :key="capy.name" class="mascot-card">
+					<div class="floating-capy mascot-figure" :style="{
+						'--capy-size': `${capy.size}px`,
+						'--float-duration': `${capy.duration}s`,
+						'--float-delay': `${capy.delay}s`,
+						'--tilt': `${capy.tilt}deg`
+					}">
 						<img :src="capy.image" :alt="capy.name" />
 						<div class="capy-bubble">{{ capy.message }}</div>
 					</div>
@@ -56,17 +49,9 @@
 			</div>
 
 			<div class="games-grid">
-				<GameCard
-					v-for="game in gameModes"
-					:key="game.title"
-					:title="game.title"
-					:description="game.description"
-					:img="game.img"
-					:tag="game.tag"
-					:gradient="game.gradient"
-					:btn-variant="game.btnVariant"
-					:to="game.to"
-				/>
+				<GameCard v-for="game in gameModes" :key="game.title" :title="game.title"
+					:description="game.description" :img="game.img" :tag="game.tag" :gradient="game.gradient"
+					:btn-variant="game.btnVariant" :to="game.to" />
 			</div>
 		</section>
 
@@ -139,15 +124,6 @@ const floatingCapys = [
 
 const gameModes = [
 	{
-		title: 'Five Night at Capys',
-		tag: 'Horreur',
-		description: 'Survis de 12 AM à 6 AM : surveille les caméras, ferme les portes et économise l\'énergie.',
-		img: '🌙',
-		gradient: 'linear-gradient(135deg, var(--color-purple), var(--color-blue))',
-		btnVariant: 'danger',
-		to: '../games/fivenightatcapys'
-	},
-	{
 		title: 'Jetpack Capy',
 		tag: 'Action',
 		description: 'Enfile ton jetpack et vole aussi haut que possible ! Évite les obstacles et collecte les pièces.',
@@ -157,6 +133,15 @@ const gameModes = [
 		to: '../games/jetpackcapy'
 	},
 	{
+		title: 'CapyShmup',
+		tag: 'Arcade',
+		description: 'Dirige ton capybara-serpent et mange autant de nourriture que possible sans te mordre la queue !',
+		img: '🛩️',
+		gradient: 'linear-gradient(135deg, var(--color-cyan), #4caf50)',
+		btnVariant: 'fun',
+		to: '../games/capyshmup'
+	},
+	{
 		title: 'CapySnake',
 		tag: 'Classique',
 		description: 'Dirige ton capybara-serpent et mange autant de nourriture que possible sans te mordre la queue !',
@@ -164,12 +149,21 @@ const gameModes = [
 		gradient: 'linear-gradient(135deg, var(--color-cyan), #4caf50)',
 		btnVariant: 'fun',
 		to: '../games/capysnake'
+	},
+	{
+		title: 'Five Night at Capys',
+		tag: 'Horreur',
+		description: 'Survis de 12 AM à 6 AM : surveille les caméras, ferme les portes et économise l\'énergie.',
+		img: '🌙',
+		gradient: 'linear-gradient(135deg, var(--color-purple), var(--color-blue))',
+		btnVariant: 'danger',
+		to: '../games/fivenightatcapys'
 	}
 ]
 
 const stats = [
-	{ value: '5', label: 'Mascottes uniques' },
-	{ value: '3', label: 'Jeux disponibles' },
+	{ value: floatingCapys.length, label: 'Mascottes uniques' },
+	{ value: gameModes.length, label: 'Jeux disponibles' },
 	{ value: '100%', label: 'Good vibes' }
 ]
 
@@ -204,6 +198,7 @@ const ambiencePoints = [
 	margin: 0 auto 1.2rem;
 	max-width: 80%;
 }
+
 .mascots-section {
 	max-width: 1180px;
 	margin: 2.2rem auto 0;
@@ -423,10 +418,12 @@ h1 {
 
 
 @keyframes capyFloat {
+
 	0%,
 	100% {
 		transform: translateY(0) rotate(var(--tilt));
 	}
+
 	50% {
 		transform: translateY(-12px) rotate(calc(var(--tilt) + 2deg));
 	}
